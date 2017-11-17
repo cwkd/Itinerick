@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.owner.itinerick3.MainScreen">
+
+    <ImageView
+        android:id="@+id/showme"
+        android:layout_width="250dp"
+        android:layout_height="125dp"
+        android:src="@drawable/showme"
+        android:layout_gravity="center_horizontal"
+        />
+    <Button
+        android:id="@+id/ShowMe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Show Me What You Got"
+        android:onClick="onClickShow"
+        />
+
+    <ImageView
+        android:id="@+id/portal"
+        android:layout_width="250dp"
+        android:layout_height="125dp"
+        android:src="@drawable/portal"
+        android:layout_gravity="center_horizontal"
+        />
+
+    <EditText
+        android:id="@+id/NavigateText"
+        android:text="Search through the infinite realities"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <Button
+        android:id="@+id/NavigateButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClickNavigate"
+        android:text="Search"
+        />
+
+
+
+</LinearLayout>
