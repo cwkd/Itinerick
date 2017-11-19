@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,43 +12,62 @@
     android:orientation="vertical"
     tools:context="com.example.owner.itinerick3.BigHead">
 
-    <ImageView
-        android:id="@+id/gardens"
-        android:layout_width="70dp"
-        android:layout_height="123dp"
-        android:src="@drawable/gardens"
-        android:clickable="true"
-        />
+        <ImageView
+            android:id="@+id/gardens"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/gardens"
+            android:scaleType="centerCrop"
+            android:clickable="true" />
 
-    <TextView
-        android:id="@+id/descriptiongardens"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:layout_toRightOf="@id/gardens" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Oh look! Its the Megatrees! Opppsss! Its just the Supertrees at the Gardens by the Bay.Located next to Marina Reservoir, gardens by the Bay offers breath-taking waterfront views.This multi-award winning horticultural destination spans 101 hectares of reclaimed land,and has different themed gardens and horticultural delights."/>
 
-    <ImageView
-        android:id="@+id/merlion"
-        android:layout_width="70dp"
-        android:layout_height="123dp"
-        android:src="@drawable/merlion"
-        android:clickable="true"
-        />
 
-    <ImageView
-        android:id="@+id/sentosa"
-        android:layout_width="70dp"
-        android:layout_height="123dp"
-        android:src="@drawable/sentosa"
-        android:clickable="true"
-        />
+        <ImageView
+            android:id="@+id/merlion"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/merlion"
+            android:layout_weight="1"
+            android:clickable="true"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="There are five authorised merlion statues around Singapore today. The body symbolises Singapore's humble beginnings as a fishing village when it was called Temasek, meaning 'sea town' in Old Javanese.Its head represents Singapore’s original name, Singapura, or ‘lion city’ in Malay. Today, you can glimpse this legend at merlion Park. Spouting water from its mouth, the merlion statue stands tall at 8.6 metres and weighs 70 tonnes." />
 
-    <ImageView
-        android:id="@+id/uss"
-        android:layout_width="70dp"
-        android:layout_height="123dp"
-        android:src="@drawable/uss"
-        android:clickable="true"
-        />
+        <ImageView
+            android:id="@+id/sentosa"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/sentosa"
+            android:layout_weight="1"
+            android:clickable="true" />
 
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sentosa is a popular island resort in Singapore, visited by some twenty million people a year. Attractions include a 2 km long sheltered beach, Fort Siloso, two golf courses, the merlion, 14 hotels,and the Resorts World sentosa,featuring the theme park Universal Studios Singapore. Basically its an all-in-one attraction"/>
+
+
+
+        <ImageView
+            android:id="@+id/uss"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/uss"
+            android:layout_weight="1"
+            android:clickable="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Universal Studios Singapore is a theme park located within Resorts World sentosa on sentosa Island, Singapore.It was Singapore's second integrated resort, after Marina Bay Sands.On 8 December 2006, the Singapore government announced that Genting had won the bid to build the resort.It is the second Universal Studios theme park to open in Asia, and the first in Southeast Asia. WOW!"/>
+
+    </LinearLayout>
+</ScrollView>
