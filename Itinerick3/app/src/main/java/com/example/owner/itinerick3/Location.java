@@ -39,7 +39,6 @@ public class Location extends AppCompatActivity {
             R.string.umbrella,
             R.string.safari,
             R.string.uss};
-    private HashMap<String, String> data;
     private ArrayList<String> myDataset;
 
 
@@ -47,17 +46,7 @@ public class Location extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bighead);
-        data = new HashMap<String, String>();
-        data.put("Buddha Tooth","buddha");
-        data.put("Gardens by the Bay","gardens");
-        data.put("Haw Par Villa","hawpar");
-        data.put("Infinity Pool","infinity");
-        data.put("Merlion","merlion");
-        data.put("Mustafa", "mustafa");
-        data.put("Umbrella Trees","umbrella");
-        data.put("Night Safari","safari");
-        data.put("Universal Studios","uss");
-        data.put("empty","empty");
+
         myDataset = new ArrayList<String>();
         myDataset.add("empty");
         spinner1 = (Spinner) findViewById(R.id.spinner1);
@@ -72,8 +61,13 @@ public class Location extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String location = String.valueOf(spinner1.getSelectedItem());
-                String keyword = data.get(location);
-                myDataset.add(keyword);
+                if (myDataset.contains("empty")){
+                    myDataset.remove("empty");
+                }
+                if (!myDataset.contains(location)){
+                    myDataset.add(location);
+                }
+                mAdapter.notifyDataSetChanged();
             }
         });
 
