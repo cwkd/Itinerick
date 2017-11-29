@@ -30,9 +30,9 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".Itinerick3"
+            android:name=".Map"
             android:label="@string/title_activity_itinerick3"
-            android:parentActivityName=".MainScreen"></activity>
+            android:parentActivityName=".MainScreen" />
         <activity
             android:name=".MainScreen"
             android:label="Itinerick">
@@ -42,8 +42,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".BigHead"
-            android:parentActivityName=".MainScreen"></activity>
+        <activity
+            android:name=".Location"
+            android:parentActivityName=".MainScreen" />
+        <activity android:name=".ShowDetails"></activity>
     </application>
 
 </manifest>

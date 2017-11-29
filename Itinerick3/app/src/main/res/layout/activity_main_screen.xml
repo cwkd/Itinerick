@@ -22,7 +22,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Hi, I'm Itinerick, your guide to the fine city of Singapore! Click Show Me What You Got or manually search to find some places to add to your itinerary"/>
+            android:text="@string/rick_intro"/>
 
         <ImageView
             android:id="@+id/showme"
@@ -35,27 +35,8 @@
             android:id="@+id/ShowMe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Show Me What You Got"
+            android:text="@string/big_head"
             android:onClick="onClickShow" />
-
-        <ImageView
-            android:id="@+id/portal"
-            android:layout_width="250dp"
-            android:layout_height="125dp"
-            android:src="@drawable/portal"
-            android:layout_gravity="center_horizontal"/>
-
-        <EditText
-            android:id="@+id/NavigateText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <Button
-            android:id="@+id/NavigateButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onClickNavigate"
-            android:text="Search"/>
 
     </LinearLayout>
 </ScrollView>

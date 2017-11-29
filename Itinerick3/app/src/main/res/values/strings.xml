@@ -1,4 +1,55 @@
 <resources>
     <string name="app_name">Itinerick3</string>
     <string name="title_activity_itinerick3">Map</string>
+    <string name="rick_intro">"Hi, I'm Itinerick, your guide to the fine city of Singapore!
+        Click Show Me What You Got to find some places to add to your itinerary"</string>
+    <string name="big_head">"Show Me What You Got"</string>
+    <string name="location_prompt">Choose a country</string>
+    <string-array name="location_arrays">
+        <item>Buddha Tooth</item>
+        <item>Gardens by the Bay</item>
+        <item>Haw Par Villa</item>
+        <item>Infinity Pool</item>
+        <item>Merlion</item>
+        <item>Mustafa</item>
+        <item>Night Safari</item>
+        <item>Umbrella Trees</item>
+        <item>Universal Studios</item>
+    </string-array>
+    <string name="buddha">"The Buddha Tooth Relic Temple and museum located in the Chinatown district was recently built
+        in 2007, but the temple’s richly designed interiors and comprehensive exhibits on Buddhist art and history tell
+        stories of culture over hundreds of years old. The temple gets its name from what the Buddhists regard as the left
+        canine tooth of Buddha, which has been recovered from his funeral pyre in Kushinagar, India and displayed in its grounds.</string>
+    <string name="gardens">"Oh look! Its the Megatrees! Opppsss! Its just the Supertrees at the Gardens by the Bay.
+        Located next to Marina Reservoir, Gardens by the Bay offers breath-taking waterfront views and unique vertical
+        gardens. This multi-award winning horticultural destination spans 101 hectares of reclaimed land,and has different
+        themed gardens and horticultural delights for people of all ages."</string>
+    <string name="hawpar">"Built in 1937, Haw Par Villa is famous for its often gruesome depictions of Chinese folklore's 10
+        Courts of Hell. But this wonderful theme park also has more, shall I say, tasteful scenes from other Chinese legends,
+        such as Journey to the West and Madame White Snake. Pick your favourite from the over 1,000 colourful statues and
+        tableaux on display, among them a giant gorilla and massive deity heads."</string>
+    <string name="infinity">"It looks like a celestial surfboard or a spaceship docking on a tripod. No matter where your
+        imagination takes you, the Marina Bay Sands SkyPark is a gawk-worthy feat of engineering.Designed by visionary architect
+        Moshe Safdie, the SkyPark floats atop the three soaring Marina Bay Sands hotel towers.It houses a ticketed observation deck,
+        lush gardens, top-notch restaurants and an exclusive, infinity-edge swimming pool with a legendary view."</string>
+    <string name="merlion">"By now, you should have realized that merlion = mermaid + lion. There are five authorised merlion
+        statues around Singapore today. The body symbolises Singapore's humble beginnings as a fishing village when it was
+        called Temasek, meaning 'sea town' in Old Javanese.Its head represents Singapore's original name, Singapura, or 'lion city'
+        in Malay. Today, you can glimpse this legend at merlion Park, spouting water from its mouth."</string>
+    <string name="mustafa">"Mustafa Centre is one of Singapore's 24-hour shopping malls on Syed Alwi Road in Little India.
+        Within a walking distance from Farrer Park station on the North East Line, Mustafa Centre is a retail hub attracting many
+        shoppers with its wide variety of products and services, such as jewellery, groceries, books, clothings, toys, electronics,
+        footwear, cosmetics and many more. Basically its a one-stop centre for everything."</string>
+    <string name="umbrella">"Ever wished for someone to hold up an umbrella to shade you from the hot sun in Singapore?
+        The Hindoo Road site features tree sculptures, but with their leaves replaced by umbrellas to shade the seating areas beneath. 
+        The design is inspired by how trees serve to provide much-needed shade in the hot afternoons. A "cool" place to chill from a 
+        hectic shopping trip and watch the world go by."</string>
+    <string name="safari">"As dusk falls, the shutters open at the Night Safari, welcoming you into a world of nocturnal creatures
+        and their dimly-lit homes. Opened in 1994 and located next to the Singapore Zoo, the Night Safari is the world’s first safari
+        park for nocturnal animals. But it resembles a wildlife park more than an actual safari. Your eyes will take a while to adjust
+        to the darkness here, but once they do, you’ll be greeted by over 2,500 resident animals from over 130 species."</string>
+    <string name="uss">"Universal Studios Singapore is a theme park located within Resorts World sentosa on sentosa Island,
+        Singapore.It was Singapore's second integrated resort, after Marina Bay Sands. On 8 December 2006, the Singapore government announced
+        that Genting had won the bid to build the resort.It is the second Universal Studios theme park to open in Asia, and the first
+        in Southeast Asia."</string>
 </resources>

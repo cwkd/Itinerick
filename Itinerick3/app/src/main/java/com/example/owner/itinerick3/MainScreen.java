@@ -13,18 +13,19 @@ public class MainScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
     }
-    //Navigate - goes to the Itinerick class where you can search through most of the places, and add them to Itinerrrick!!
+    /*Navigate - goes to the Itinerick class where you can search through most of the places, and add them to Itinerrrick!!
     public void onClickNavigate(View v){
-        Intent intent = new Intent(this, Itinerick3.class);
+        Intent intent = new Intent(this, Map.class);
         EditText editText = (EditText) findViewById(R.id.NavigateText);
         String message = editText.getText().toString();
         intent.putExtra("place", message);
         startActivity(intent);
     }
+*/
 
     //Show Me What You Got - goes to the show me class where a number of Singapore attractions is displayed, can also add them to Itinerick
     public void onClickShow (View V){
-        Intent intent = new Intent(this, BigHead.class);
+        Intent intent = new Intent(this, Location.class);
         startActivity(intent);
     }
 }
