@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:background="@drawable/launcher">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -10,26 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context="com.example.owner.itinerick3.MainScreen">
-
-        <ImageView
-            android:id="@+id/itinerick"
-            android:layout_width="250dp"
-            android:layout_height="125dp"
-            android:src="@drawable/rick2"
-            android:layout_gravity="center_horizontal" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/rick_intro"/>
-
-        <ImageView
-            android:id="@+id/showme"
-            android:layout_width="250dp"
-            android:layout_height="125dp"
-            android:src="@drawable/showme"
-            android:layout_gravity="center_horizontal" />
+        tools:context="com.example.owner.itinerick3.ActivityMainScreen">
 
         <Button
             android:id="@+id/ShowMe"

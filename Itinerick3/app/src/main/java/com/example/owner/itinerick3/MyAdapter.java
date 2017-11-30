@@ -1,15 +1,16 @@
 package com.example.owner.itinerick3;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.HashMap;
+
 
 
 /**
@@ -21,26 +22,37 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private HashMap<String, String> data;
     Context parentContext;
 
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView name;
-        public ImageView pic;
-        public ViewHolder(View v) {
-            super(v);
-            name = v.findViewById(R.id.item_text);
-            pic = v.findViewById(R.id.item_image);
-        }
-    }
-
-    // Provide a suitable constructor (depends on the kind of dataset)
+    // Initialize dataset, taking in parent context to initialize package name in bind method
     public MyAdapter(Context c,ArrayList myDataset) {
         mDataset = myDataset;
         parentContext = c;
     }
 
+    //View holder class that takes our recycler view item holder
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        public TextView name;
+        public ImageView pic;
+        public ViewHolder(View view) {
+            super(view);
+            name = view.findViewById(R.id.item_text);
+            pic = view.findViewById(R.id.item_image);
+            view.setOnClickListener(this);
+        }
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(view.getContext(), ActivityShowDetails.class);
+            String text = name.getText().toString();
+            String keyword = data.get(text);
+            intent.putExtra("name",keyword);
+            view.getContext().startActivity(intent);
+        }
+    }
+
+
+
     @Override
     public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        data = new HashMap<String, String>();
+        data = new HashMap<>();
         data.put("Buddha Tooth","buddha");
         data.put("Gardens by the Bay","gardens");
         data.put("Haw Par Villa","hawpar");

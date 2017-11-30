@@ -30,11 +30,11 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".Map"
+            android:name=".FragmentMap"
             android:label="@string/title_activity_itinerick3"
-            android:parentActivityName=".MainScreen" />
+            android:parentActivityName=".ActivityMainScreen" />
         <activity
-            android:name=".MainScreen"
+            android:name=".ActivityMainScreen"
             android:label="Itinerick">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,9 +43,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Location"
-            android:parentActivityName=".MainScreen" />
-        <activity android:name=".ShowDetails"></activity>
+            android:name=".ActivityLocation"
+            android:parentActivityName=".ActivityMainScreen" />
+        <activity android:name=".ActivityShowDetails"></activity>
     </application>
 
 </manifest>
