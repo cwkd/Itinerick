@@ -1,7 +1,9 @@
 package com.example.owner.itinerick3;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,7 +23,8 @@ public class ActivityLocation extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<String> myDataset;
-
+    private LocationDbHelper locationDbHelper;
+    private SQLiteDatabase locationDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +32,7 @@ public class ActivityLocation extends AppCompatActivity {
         setContentView(R.layout.activity_location);
 
         myDataset = new ArrayList<String>();
-        myDataset.add("empty");
+        myDataset.add("Rick");
         spinner1 = (Spinner) findViewById(R.id.spinner1);
         btnAdd = (Button) findViewById(R.id.btnAdd);
         btnCompute = (Button) findViewById(R.id.btnCompute);
@@ -37,22 +40,22 @@ public class ActivityLocation extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         Context c = getApplicationContext();
-        mAdapter = new MyAdapter(c,myDataset);
+        mAdapter = new MyAdapter(c, myDataset);
         mRecyclerView.setAdapter(mAdapter);
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String location = String.valueOf(spinner1.getSelectedItem());
-                if (myDataset.contains("empty")){
-                    myDataset.remove("empty");
+                ContentValues contentValues = new ContentValues();
+                if (myDataset.contains("Rick")) {
+                    myDataset.remove("Rick");
                 }
-                if (!myDataset.contains(location)){
+                if (!myDataset.contains(location)) {
                     myDataset.add(location);
                 }
                 mAdapter.notifyDataSetChanged();
             }
         });
-
     }
 
     //Compute Itinerary - goes to the Map Fragment where the shortest path is shown
@@ -62,3 +65,44 @@ public class ActivityLocation extends AppCompatActivity {
         startActivity(intent);
     }
 }
+
+    /*
+    public void onClickAddToDb(View view) {
+
+        //TO DO 3.3 Get instances of the edit text widgets and extract their contents
+        //TO DO 3.4 Store the contents into a ContentValues Object
+        //TO DO 3.5 Insert the ContentValues object into the database
+        //TO DO 3.6 (Optional) Display a Toast Message
+
+    }
+
+    public void onClickGetEntireDb(View view) {
+
+        //TO DO 3.7 Call the query or rawQuery method of the spendingDb object and
+        //          store the result in a Cursor object
+
+        //TO DO 3.8 Extract the data from the Cursor object and
+        //          display it on the textView widget
+
+    }
+
+
+    public void onClickDeleteFromDb(View view) {
+
+
+        try {
+            //TO DO 3.9 Get an instance of the editText Widget
+            //          and extract the contents
+            //TO DO 3.10 Delete the entry
+
+        } catch (Exception ex) {
+            //TO DO 3.11 Display a toast if an exception occurs
+        }
+
+    }
+
+}
+
+
+
+*/

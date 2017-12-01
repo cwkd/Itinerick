@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:fillViewport="true"
@@ -13,12 +13,30 @@
         android:orientation="vertical"
         tools:context="com.example.owner.itinerick3.ActivityMainScreen">
 
-        <Button
-            android:id="@+id/ShowMe"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/big_head"
-            android:onClick="onClickShow" />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center|bottom">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:gravity="center"
+                android:text="@string/rick_intro"
+                android:textColor="@color/white"
+                android:textSize="15dp"/>
+
+            <Button
+                android:id="@+id/ShowMe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="Show Me What You Got"
+                android:onClick="onClickShow" />
+
+        </LinearLayout>
     </LinearLayout>
-</ScrollView>
+</android.support.constraint.ConstraintLayout>

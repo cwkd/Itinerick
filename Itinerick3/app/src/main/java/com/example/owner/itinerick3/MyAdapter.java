@@ -2,12 +2,15 @@ package com.example.owner.itinerick3;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -19,7 +22,9 @@ import java.util.HashMap;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private ArrayList<String> mDataset;
-    private HashMap<String, String> data;
+    private LocationDbHelper locationDbHelper;
+    private SQLiteDatabase locationDb;
+    public HashMap<String, String> data;
     Context parentContext;
 
     // Initialize dataset, taking in parent context to initialize package name in bind method
@@ -40,11 +45,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         }
         @Override
         public void onClick(View view) {
-            Intent intent = new Intent(view.getContext(), ActivityShowDetails.class);
-            String text = name.getText().toString();
-            String keyword = data.get(text);
-            intent.putExtra("name",keyword);
-            view.getContext().startActivity(intent);
+            if (name.getText() == "Rick"){
+                Toast.makeText(view.getContext(), "yo", Toast.LENGTH_LONG).show();
+            }
+            else {
+                Intent intent = new Intent(view.getContext(), ActivityShowDetails.class);
+                String text = name.getText().toString();
+                intent.putExtra("name", text);
+                view.getContext().startActivity(intent);
+            }
         }
     }
 
@@ -53,7 +62,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     @Override
     public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         data = new HashMap<>();
-        data.put("Buddha Tooth","buddha");
+        data.put("Buddha Tooth Temple","buddha");
         data.put("Gardens by the Bay","gardens");
         data.put("Haw Par Villa","hawpar");
         data.put("Infinity Pool","infinity");
@@ -62,7 +71,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         data.put("Umbrella Trees","umbrella");
         data.put("Night Safari","safari");
         data.put("Universal Studios","uss");
-        data.put("empty","empty");
+        data.put("Rick","rick");
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_item, parent, false);
         ViewHolder vh = new ViewHolder(v);
         return vh;

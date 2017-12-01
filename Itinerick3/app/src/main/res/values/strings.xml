@@ -1,12 +1,10 @@
 <resources>
     <string name="app_name">Itinerick3</string>
     <string name="title_activity_itinerick3">Map</string>
-    <string name="rick_intro">"Hi, I'm Itinerick, your guide to the fine city of Singapore!
-        Click Show Me What You Got to find some places to add to your itinerary"</string>
-    <string name="big_head">"Show Me What You Got"</string>
+    <string name="rick_intro">"Visit Singapore's Weird and Wonderful Attractions!"</string>
     <string name="location_prompt">Choose a country</string>
     <string-array name="location_arrays">
-        <item>Buddha Tooth</item>
+        <item>Buddha Tooth Temple</item>
         <item>Gardens by the Bay</item>
         <item>Haw Par Villa</item>
         <item>Infinity Pool</item>
