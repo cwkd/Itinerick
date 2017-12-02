@@ -1,9 +1,17 @@
 package com.example.owner.itinerick3;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.app.FragmentManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,27 +28,34 @@ import java.util.HashMap;
  * Created by Owner on 11/29/2017.
  */
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
     private ArrayList<String> mDataset;
     private LocationDbHelper locationDbHelper;
     private SQLiteDatabase locationDb;
     public HashMap<String, String> data;
     Context parentContext;
+    ActivityLocation parentAct;
+
+    public interface ViewIdListener {
+        public void getViewId(int id);
+    }
 
     // Initialize dataset, taking in parent context to initialize package name in bind method
-    public MyAdapter(Context c,ArrayList myDataset) {
+    public MyAdapter(Context c, ArrayList myDataset, ActivityLocation act) {
         mDataset = myDataset;
         parentContext = c;
+        parentAct = act;
     }
 
     //View holder class that takes our recycler view item holder
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         public TextView name;
         public ImageView pic;
         public ViewHolder(View view) {
             super(view);
             name = view.findViewById(R.id.item_text);
             pic = view.findViewById(R.id.item_image);
+            view.setOnLongClickListener(this);
             view.setOnClickListener(this);
         }
         @Override
@@ -49,15 +64,21 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                 Toast.makeText(view.getContext(), "yo", Toast.LENGTH_LONG).show();
             }
             else {
-                Intent intent = new Intent(view.getContext(), ActivityShowDetails.class);
+                //Intent intent = new Intent(view.getContext(), ActivityShowDetails.class);
                 String text = name.getText().toString();
-                intent.putExtra("name", text);
-                view.getContext().startActivity(intent);
+                parentAct.showDetails(text);
+                /*intent.putExtra("name", text);
+                view.getContext().startActivity(intent);*/
             }
         }
+
+        @Override
+        public boolean onLongClick(View view) {
+            parentAct.getViewId(name.getId());
+            parentAct.showDialog();
+            return true;
+        }
     }
-
-
 
     @Override
     public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -96,3 +117,5 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
 
 }
+
+

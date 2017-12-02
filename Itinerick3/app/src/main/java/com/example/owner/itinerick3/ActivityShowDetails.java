@@ -14,66 +14,32 @@ import java.util.HashMap;
 
 public class ActivityShowDetails extends AppCompatActivity {
     private String keyword;
-    private String keywordname;
+    private String mapquery;
     private ImageView picture;
     private TextView name;
     private TextView description;
-    private static final int[] display = {
-            R.drawable.buddha,
-            R.drawable.gardens,
-            R.drawable.hawpar,
-            R.drawable.infinity,
-            R.drawable.merlion,
-            R.drawable.mustafa,
-            R.drawable.umbrella,
-            R.drawable.safari,
-            R.drawable.uss};
-    private static final int[] text = {
-            R.string.buddha,
-            R.string.gardens,
-            R.string.hawpar,
-            R.string.infinity,
-            R.string.merlion,
-            R.string.mustafa,
-            R.string.umbrella,
-            R.string.safari,
-            R.string.uss};
-    private HashMap<String,String> data;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_details);
-        data = new HashMap<>();
-        data.put("Buddha Tooth Temple","buddha");
-        data.put("Gardens by the Bay","gardens");
-        data.put("Haw Par Villa","hawpar");
-        data.put("Infinity Pool","infinity");
-        data.put("Merlion","merlion");
-        data.put("Mustafa", "mustafa");
-        data.put("Umbrella Trees","umbrella");
-        data.put("Night Safari","safari");
-        data.put("Universal Studios","uss");
-        data.put("Rick","rick");
         picture = (ImageView) findViewById(R.id.detailspic);
         name = (TextView) findViewById(R.id.detailsname);
         description = (TextView) findViewById(R.id.detailsdescription);
         Intent intent = getIntent();
-        keywordname = intent.getStringExtra("name");
-        keyword = data.get(keywordname);
+        keyword = intent.getStringExtra(LocationContract.LocationEntry.COL_KEYWORDS);
+        mapquery = intent.getStringExtra(LocationContract.LocationEntry.COL_MAP_QUERY);
         String packageName = getPackageName();
-        String drawable = "drawable";
-        String string = "string";
-        int resID1 = getResources().getIdentifier(keyword, drawable, packageName);
+        int resID1 = getResources().getIdentifier(keyword, "drawable", packageName);
         picture.setImageResource(resID1);
-        name.setText(keywordname);
-        int resID2 = getResources().getIdentifier(keyword, string, packageName);
-        description.setText(resID2);
+        name.setText(intent.getStringExtra(LocationContract.LocationEntry.COL_LOCATION));
+        name.setTextSize(24);
+        description.setText(intent.getStringExtra(LocationContract.LocationEntry.COL_DESCRIPTION));
+        description.setTextSize(20);
     }
 
     public void onClickMap (View V){
-        String myLocation = keywordname;
+        String myLocation = mapquery;
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("geo").opaquePart("0,0").appendQueryParameter("q",myLocation);
         Uri geoLocation = builder.build();

@@ -9,7 +9,9 @@ import android.provider.BaseColumns;
 public class LocationContract {
     public static final class LocationEntry implements BaseColumns {
         public static final String TABLE_NAME = "LocationRecord";
-        public static final String COL_KEYWORDS = "Location";
-        public static final String COL_LOCATION = "Keywords";
+        public static final String COL_LOCATION = "Location";
+        public static final String COL_KEYWORDS = "Keywords";
+        public static final String COL_DESCRIPTION = "Description";
+        public static final String COL_MAP_QUERY = "MapQuery";
     }
 }
