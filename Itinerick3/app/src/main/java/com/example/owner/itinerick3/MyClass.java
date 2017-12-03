@@ -1,6 +1,7 @@
 package com.example;
 
 
+import java.text.DecimalFormat;
 import java.util.PriorityQueue;
 import java.util.List;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ class Vertex implements Comparable<Vertex>
     public double minCost = Double.POSITIVE_INFINITY;
     public double minTime = Double.POSITIVE_INFINITY;
     public String mode = "";
+    public double budget = 20;
     public Vertex previous;
     public Vertex(String argName) { name = argName; }
     public String toString() { return name; }
@@ -45,6 +47,7 @@ public class MyClass
         source.minTime = 0.;
         source.minCost = 0.;
         source.mode = "";
+        source.budget = 20;
         PriorityQueue<Vertex> vertexQueue = new PriorityQueue<Vertex>();
         vertexQueue.add(source);
 
@@ -61,8 +64,19 @@ public class MyClass
                 double timeThroughU = u.minTime + time;
                 double costThroughU = u.minCost + cost;
                 if (timeThroughU < v.minTime) {
-                    if (costThroughU<v.minCost){
+                    if(timeThroughU>=60 &&v.budget-costThroughU>=0){
                         vertexQueue.remove(v);
+                        v.budget -= costThroughU;
+                        v.minCost = costThroughU;
+                        v.minTime = timeThroughU;
+                        v.mode = mode;
+                        v.previous = u;
+                        vertexQueue.add(v);
+                    }
+
+                    else if (costThroughU<v.minCost && v.budget>=0){
+                        vertexQueue.remove(v);
+                        v.budget -= costThroughU;
                         v.minCost = costThroughU;
                         v.minTime = timeThroughU;
                         v.mode = mode;
@@ -128,7 +142,8 @@ public class MyClass
         for (Vertex v : vertices)
         {
             System.out.println("Time to " + v + ": " + v.minTime);
-            System.out.println("Cost to " + v + ": " + v.minCost);
+            DecimalFormat df = new DecimalFormat("#,###,##0.00");
+            System.out.println("Cost to " + v + ": " + v.minCost + " Budget left: "+df.format(v.budget));
             System.out.println("Mode of Transport " + v + ": " + v.mode);
             List<Vertex> path = getShortestPathTo(v);
             System.out.println("Path: " + path);
