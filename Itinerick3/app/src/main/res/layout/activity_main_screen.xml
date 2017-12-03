@@ -21,6 +21,7 @@
             android:gravity="center|bottom">
 
             <TextView
+                android:id="@+id/intro_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
@@ -34,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:text="Show Me What You Got"
+                android:text="@string/alt_show_me_button"
                 android:onClick="onClickShow" />
 
         </LinearLayout>

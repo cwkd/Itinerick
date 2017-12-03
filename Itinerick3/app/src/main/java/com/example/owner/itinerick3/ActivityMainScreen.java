@@ -2,19 +2,26 @@ package com.example.owner.itinerick3;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.drawable.Drawable;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
 
 public class ActivityMainScreen extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener{
 
     SharedPreferences sharedPreferences;
+    Button button;
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +29,13 @@ public class ActivityMainScreen extends AppCompatActivity implements SharedPrefe
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
-        initTheme();
+
+        initPrefs();
 
         setContentView(R.layout.activity_main_screen);
+        button = findViewById(R.id.ShowMe);
+        textView = findViewById(R.id.intro_text);
+        initPrefs2();
     }
 
     @Override
@@ -51,14 +62,35 @@ public class ActivityMainScreen extends AppCompatActivity implements SharedPrefe
         return true;
     }
 
-    public void initTheme() {
-        if (getString(R.string.checkDarkThemeKey).equals("true")) {
-            boolean checked = sharedPreferences.getBoolean("true", false);
-            if (checked) {
-                setTheme(R.style.DarkTheme);
-            } else {
-                setTheme(R.style.AppTheme);
-            }
+    public void initPrefs() {
+        boolean checked = sharedPreferences.getBoolean("isDark", false);
+        if (checked) {
+            setTheme(R.style.DarkTheme);
+        } else {
+            setTheme(R.style.AppTheme);
+        }
+        checked = sharedPreferences.getBoolean("isWhacky", false);
+        if (checked) {
+            setTitle(R.string.alt_app_name);
+        } else {
+            setTitle(R.string.app_name);
+        }
+    }
+
+    public void initPrefs2() {
+        boolean checked = sharedPreferences.getBoolean("isDark", false);
+        if (checked) {
+            //button.setBackgroundColor(getResources().getColor(R.color.grey));
+        } else {
+            //button.setBackgroundColor(getResources().getColor(R.color.pale_grey));
+        }
+        checked = sharedPreferences.getBoolean("isWhacky", false);
+        if (checked) {
+            button.setText(R.string.alt_show_me_button);
+            textView.setText(R.string.alt_rick_intro);
+        } else {
+            button.setText(R.string.show_me_button);
+            textView.setText(R.string.rick_intro);
         }
     }
 
@@ -71,12 +103,27 @@ public class ActivityMainScreen extends AppCompatActivity implements SharedPrefe
         recreate();
     }
 
+    public void changeName(boolean isWhacky) {
+        if (isWhacky) {
+            setTitle(R.string.alt_app_name);
+        } else {
+            setTitle(R.string.app_name);
+        }
+        recreate();
+    }
+
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
 
-        if (s.equals(getString(R.string.checkDarkThemeKey))) {
+        Log.d("PrefChanged", s);
+        if (s.equals(getString(R.string.dark_theme_key))) {
             boolean checked = sharedPreferences.getBoolean(s, false);
             changeTheme(checked);
+        }
+
+        if (s.equals(getString(R.string.whacky_name_key))) {
+            boolean checked = sharedPreferences.getBoolean(s, false);
+            changeName(checked);
         }
     }
 
@@ -86,4 +133,5 @@ public class ActivityMainScreen extends AppCompatActivity implements SharedPrefe
         Intent intent = new Intent(this, ActivityLocation.class);
         startActivity(intent);
     }
+
 }

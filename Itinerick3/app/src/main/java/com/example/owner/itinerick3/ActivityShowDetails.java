@@ -9,10 +9,10 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
-
-import java.util.HashMap;
 
 public class ActivityShowDetails extends AppCompatActivity {
     private String keyword;
@@ -20,6 +20,7 @@ public class ActivityShowDetails extends AppCompatActivity {
     private ImageView picture;
     private TextView name;
     private TextView description;
+    private Button button;
 
     SharedPreferences sharedPreferences;
 
@@ -27,11 +28,11 @@ public class ActivityShowDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        initTheme();
+        initPrefs();
         setContentView(R.layout.activity_show_details);
-        picture = (ImageView) findViewById(R.id.detailspic);
-        name = (TextView) findViewById(R.id.detailsname);
-        description = (TextView) findViewById(R.id.detailsdescription);
+        picture = findViewById(R.id.detailspic);
+        name = findViewById(R.id.detailsname);
+        description = findViewById(R.id.detailsdescription);
         Intent intent = getIntent();
         keyword = intent.getStringExtra(LocationContract.LocationEntry.COL_KEYWORDS);
         mapquery = intent.getStringExtra(LocationContract.LocationEntry.COL_MAP_QUERY);
@@ -42,23 +43,41 @@ public class ActivityShowDetails extends AppCompatActivity {
         name.setTextSize(24);
         description.setText(intent.getStringExtra(LocationContract.LocationEntry.COL_DESCRIPTION));
         description.setTextSize(20);
+        button = findViewById(R.id.buttonMaps);
+        initPrefs2();
     }
 
-    public void initTheme() {
-        if (getString(R.string.checkDarkThemeKey).equals("true")) {
-            boolean checked = sharedPreferences.getBoolean("true", false);
-            if (checked) {
-                setTheme(R.style.DarkTheme);
-            } else {
-                setTheme(R.style.AppTheme);
-            }
+    public void initPrefs() {
+        boolean checked = sharedPreferences.getBoolean("isDark", false);
+
+        if (checked) {
+            setTheme(R.style.DarkTheme);
+            getWindow().getDecorView().setBackgroundResource(R.color.dark_grey);
+        } else {
+            setTheme(R.style.AppTheme);
+            getWindow().getDecorView().setBackgroundResource(R.color.white);
+        }
+        checked = sharedPreferences.getBoolean("isWhacky", false);
+        if (checked) {
+            setTitle(R.string.alt_app_name);
+        } else {
+            setTitle(R.string.app_name);
+        }
+    }
+
+    public void initPrefs2() {
+        boolean checked = sharedPreferences.getBoolean("isBig", false);
+        if (checked) {
+            button.setTextSize(30);
+
+        } else {
+            button.setTextSize(14);
         }
     }
 
     public void onClickMap (View V){
-        String myLocation = mapquery;
         Uri.Builder builder = new Uri.Builder();
-        builder.scheme("geo").opaquePart("0,0").appendQueryParameter("q",myLocation);
+        builder.scheme("geo").opaquePart("0,0").appendQueryParameter("q",mapquery);
         Uri geoLocation = builder.build();
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(geoLocation);
