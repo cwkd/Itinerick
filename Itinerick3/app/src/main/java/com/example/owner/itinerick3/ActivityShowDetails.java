@@ -3,7 +3,9 @@ package com.example.owner.itinerick3;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,9 +21,13 @@ public class ActivityShowDetails extends AppCompatActivity {
     private TextView name;
     private TextView description;
 
+    SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        initTheme();
         setContentView(R.layout.activity_show_details);
         picture = (ImageView) findViewById(R.id.detailspic);
         name = (TextView) findViewById(R.id.detailsname);
@@ -36,6 +42,17 @@ public class ActivityShowDetails extends AppCompatActivity {
         name.setTextSize(24);
         description.setText(intent.getStringExtra(LocationContract.LocationEntry.COL_DESCRIPTION));
         description.setTextSize(20);
+    }
+
+    public void initTheme() {
+        if (getString(R.string.checkDarkThemeKey).equals("true")) {
+            boolean checked = sharedPreferences.getBoolean("true", false);
+            if (checked) {
+                setTheme(R.style.DarkTheme);
+            } else {
+                setTheme(R.style.AppTheme);
+            }
+        }
     }
 
     public void onClickMap (View V){
