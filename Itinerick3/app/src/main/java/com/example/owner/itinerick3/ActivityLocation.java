@@ -3,6 +3,7 @@ package com.example.owner.itinerick3;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -15,7 +16,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +32,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ActivityLocation extends AppCompatActivity implements DeleteDialogFragment.DeleteDialogListener, MyAdapter.ViewIdListener {
     private Spinner spinner1;
@@ -52,25 +57,23 @@ public class ActivityLocation extends AppCompatActivity implements DeleteDialogF
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        initTheme();
+        initPrefs();
 
         setContentView(R.layout.activity_location);
 
         locationDbHelper = new LocationDbHelper(this);
         locationDb = locationDbHelper.getWritableDatabase();
 
-        LoadDbAsync loadDbAsync = new LoadDbAsync();
+        LoadDbAsync loadDbAsync = new LoadDbAsync(this);
         loadDbAsync.execute();
         myDataset = new ArrayList<>();
         myDataset.add("Rick");
-        spinner1 = (Spinner) findViewById(R.id.spinner1);
-        btnAdd = (Button) findViewById(R.id.btnAdd);
-        btnCompute = (Button) findViewById(R.id.btnCompute);
-        mRecyclerView = (RecyclerView) findViewById(R.id.recycle_view);
+        spinner1 = findViewById(R.id.spinner1);
+        btnAdd = findViewById(R.id.btnAdd);
+        btnCompute = findViewById(R.id.btnCompute);
+        mRecyclerView = findViewById(R.id.recycle_view);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new MyAdapter(this, myDataset, this);
-        mRecyclerView.setAdapter(mAdapter);
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,16 +88,43 @@ public class ActivityLocation extends AppCompatActivity implements DeleteDialogF
                 mAdapter.notifyDataSetChanged();
             }
         });
+        initPrefs2();
     }
 
-    public void initTheme() {
-        if (getString(R.string.checkDarkThemeKey).equals("true")) {
-            boolean checked = sharedPreferences.getBoolean("true", false);
-            if (checked) {
-                setTheme(R.style.DarkTheme);
-            } else {
-                setTheme(R.style.AppTheme);
-            }
+    public void initPrefs() {
+        boolean checked = sharedPreferences.getBoolean("isDark", false);
+        if (checked) {
+            setTheme(R.style.DarkTheme);
+            getWindow().getDecorView().setBackgroundResource(R.color.dark_grey);
+        } else {
+            setTheme(R.style.AppTheme);
+            getWindow().getDecorView().setBackgroundResource(R.color.white);
+        }
+        checked = sharedPreferences.getBoolean("isWhacky", false);
+        if (checked) {
+            setTitle(R.string.alt_app_name);
+        } else {
+            setTitle(R.string.app_name);
+        }
+    }
+
+    public void initPrefs2() {
+        boolean checked = sharedPreferences.getBoolean("isWhacky", false);
+        if (checked) {
+            btnAdd.setText(R.string.alt_add_button);
+            btnCompute.setText(R.string.alt_compute_button);
+        } else {
+            btnAdd.setText(R.string.add_button);
+            btnCompute.setText(R.string.compute_button);
+        }
+        checked = sharedPreferences.getBoolean("isBig", false);
+        if (checked) {
+            btnAdd.setTextSize(30);
+            btnCompute.setTextSize(30);
+
+        } else {
+            btnAdd.setTextSize(14);
+            btnCompute.setTextSize(14);
         }
     }
 
@@ -150,6 +180,21 @@ public class ActivityLocation extends AppCompatActivity implements DeleteDialogF
         startActivity(intent);
     }
 
+    public String queryForLocation(String location) {
+        String query = "SELECT * from "
+                + LocationContract.LocationEntry.TABLE_NAME
+                + " where "
+                + LocationContract.LocationEntry.COL_LOCATION
+                + " = '"
+                + location
+                + "'";
+        Cursor cursor = locationDb.rawQuery(query, null);
+        cursor.moveToNext();
+        String keyword = cursor.getString(cursor.getColumnIndex(LocationContract.LocationEntry.COL_KEYWORDS));
+        cursor.close();
+        return keyword;
+    }
+
     public class LocationJsonData {
         String name;
         String keyword;
@@ -188,6 +233,15 @@ public class ActivityLocation extends AppCompatActivity implements DeleteDialogF
     class LoadDbAsync extends AsyncTask<Void, Void, Void> {
 
         final String COUNTRY = " Singapore";
+        String[] locations;
+        int count;
+        Context parentContext;
+        ActivityLocation activityLocation;
+
+        LoadDbAsync(Context context) {
+            parentContext = context;
+            activityLocation = (ActivityLocation) context;
+        }
 
         private void addToDB(String name, String keyword, String description) {
             ContentValues cv = new ContentValues();
@@ -201,52 +255,22 @@ public class ActivityLocation extends AppCompatActivity implements DeleteDialogF
         @Override
         protected Void doInBackground(Void... voids) {
             parseJson();
+            count = 0;
+            locations = new String[locationJsonData.length];
             for (LocationJsonData data: locationJsonData) {
                 addToDB(data.name, data.keyword, data.description);
+                locations[count] = data.name;
+                count++;
+            }
+            ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(parentContext, R.layout.spinner_item, new ArrayList<>(Arrays.asList(locations)));
+            try {
+                spinner1.setAdapter(spinnerAdapter);
+                mAdapter = new MyAdapter(parentContext, myDataset, activityLocation);
+                mRecyclerView.setAdapter(mAdapter);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
             return null;
         }
     }
-
 }
-
-    /*
-    public void onClickAddToDb(View view) {
-
-        //TO DO 3.3 Get instances of the edit text widgets and extract their contents
-        //TO DO 3.4 Store the contents into a ContentValues Object
-        //TO DO 3.5 Insert the ContentValues object into the database
-        //TO DO 3.6 (Optional) Display a Toast Message
-
-    }
-
-    public void onClickGetEntireDb(View view) {
-
-        //TO DO 3.7 Call the query or rawQuery method of the spendingDb object and
-        //          store the result in a Cursor object
-
-        //TO DO 3.8 Extract the data from the Cursor object and
-        //          display it on the textView widget
-
-    }
-
-
-    public void onClickDeleteFromDb(View view) {
-
-
-        try {
-            //TO DO 3.9 Get an instance of the editText Widget
-            //          and extract the contents
-            //TO DO 3.10 Delete the entry
-
-        } catch (Exception ex) {
-            //TO DO 3.11 Display a toast if an exception occurs
-        }
-
-    }
-
-}
-
-
-
-*/
