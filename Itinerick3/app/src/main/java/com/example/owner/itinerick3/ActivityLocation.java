@@ -4,9 +4,11 @@ import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -40,6 +42,8 @@ public class ActivityLocation extends AppCompatActivity implements DeleteDialogF
     DialogFragment dialog;
     int deleteViewId;
 
+    SharedPreferences sharedPreferences;
+
     public static final String LIST_OF_PLACES = "listOfPlaces";
 
     LocationJsonData[] locationJsonData;
@@ -47,6 +51,9 @@ public class ActivityLocation extends AppCompatActivity implements DeleteDialogF
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        initTheme();
+
         setContentView(R.layout.activity_location);
 
         locationDbHelper = new LocationDbHelper(this);
@@ -78,14 +85,17 @@ public class ActivityLocation extends AppCompatActivity implements DeleteDialogF
                 mAdapter.notifyDataSetChanged();
             }
         });
+    }
 
-        /*mRecyclerView.setOnLongClickListener(new View.OnLongClickListener()  {
-            @Override
-            public boolean onLongClick(View view) {
-                onLongClick(view);
-                return true;
+    public void initTheme() {
+        if (getString(R.string.checkDarkThemeKey).equals("true")) {
+            boolean checked = sharedPreferences.getBoolean("true", false);
+            if (checked) {
+                setTheme(R.style.DarkTheme);
+            } else {
+                setTheme(R.style.AppTheme);
             }
-        });*/
+        }
     }
 
     //Compute Itinerary - goes to the Map Fragment where the shortest path is shown

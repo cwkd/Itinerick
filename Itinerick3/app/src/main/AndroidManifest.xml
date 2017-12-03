@@ -45,7 +45,8 @@
         <activity
             android:name=".ActivityLocation"
             android:parentActivityName=".ActivityMainScreen" />
-        <activity android:name=".ActivityShowDetails"></activity>
+        <activity android:name=".ActivityShowDetails" />
+        <activity android:name=".SettingsActivity"></activity>
     </application>
 
 </manifest>
