@@ -16,4 +16,6 @@
     <string name="dark_theme_key">isDark</string>
     <string name="whacky_name_key">isWhacky</string>
     <string name="big_button_key">isBig</string>
+
+    <string name="directionsApiKey">AIzaSyC5ILI6jCPTAHDoXYQjx0JhEqESXlI8P7o</string>
 </resources>

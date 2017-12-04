@@ -1,0 +1,1028 @@
+{
+	"buddha" : {
+		"gardens" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 32
+			},
+			"public" : {
+				"cost" : 1.40,
+				"time" : 25
+			},
+			"taxi" : {
+				"cost" : 11.00,
+				"time" : 11
+			}
+		},
+		"hawpar" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 107
+			},
+			"public" : {
+				"cost" : 3.40,
+				"time" : 22
+			},
+			"taxi" : {
+				"cost" : 11.50,
+				"time" : 14
+			}
+		},
+		"infinity" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 12
+			},
+			"public" : {
+				"cost" : 1.70,
+				"time" : 19
+			},
+			"taxi" : {
+				"cost" : 10.50,
+				"time" : 10
+			}
+		},
+		"merlion" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 12
+			},
+			"public" : {
+				"cost" : 1.10,
+				"time" : 14
+			},
+			"taxi" : {
+				"cost" : 8.00,
+				"time" : 11
+			}
+		},
+		"mustafa" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 50
+			},
+			"public" : {
+				"cost" : 1.40,
+				"time" : 24
+			},
+			"taxi" : {
+				"cost" : 18.20,
+				"time" : 17
+			}
+		},
+		"safari" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 288
+			},
+			"public" : {
+				"cost" : 4.70,
+				"time" : 86
+			},
+			"taxi" : {
+				"cost" : 28.00,
+				"time" : 27
+			}
+		},
+		"umbrella" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 48
+			},
+			"public" : {
+				"cost" : 2.00,
+				"time" : 22
+			},
+			"taxi" : {
+				"cost" : 15.00,
+				"time" : 15
+			}
+		},
+		"uss" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 59
+			},
+			"public" : {
+				"cost" : 2.10,
+				"time" : 22
+			},
+			"taxi" : {
+				"cost" : 12.60,
+				"time" : 13
+			}
+		}
+	},
+	"gardens" : {
+		"buddha" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 32
+			},
+			"public" : {
+				"cost" : 1.40,
+				"time" : 25
+			},
+			"taxi" : {
+				"cost" : 11.60,
+				"time" : 13
+			}
+		},
+		"hawpar" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 135
+			},
+			"public" : {
+				"cost" : 3.70,
+				"time" : 37
+			},
+			"taxi" : {
+				"cost" : 16.50,
+				"time" : 15
+			}
+		},
+		"infinity" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 11
+			},
+			"public" : {
+				"cost" : 0.00,
+				"time" : 11
+			},
+			"taxi" : {
+				"cost" : 5.60,
+				"time" : 8
+			}
+		},
+		"merlion" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 16
+			},
+			"public" : {
+				"cost" : 1.10,
+				"time" : 14
+			},
+			"taxi" : {
+				"cost" : 13.10,
+				"time" : 14
+			}
+		},
+		"mustafa" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 41
+			},
+			"public" : {
+				"cost" : 1.50,
+				"time" : 24
+			},
+			"taxi" : {
+				"cost" : 17.70,
+				"time" : 23
+			}
+		},
+		"safari" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 344
+			},
+			"public" : {
+				"cost" : 5.10,
+				"time" : 79
+			},
+			"taxi" : {
+				"cost" : 23.20,
+				"time" : 32
+			}
+		},
+		"umbrella" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 37
+			},
+			"public" : {
+				"cost" : 2.10,
+				"time" : 20
+			},
+			"taxi" : {
+				"cost" : 12.40,
+				"time" : 17
+			}
+		},
+		"uss" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 86
+			},
+			"public" : {
+				"cost" : 2.20,
+				"time" : 38
+			},
+			"taxi" : {
+				"cost" : 8.60,
+				"time" : 15
+			}
+		}
+	},
+	"hawpar" : {
+		"buddha" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 107
+			},
+			"public" : {
+				"cost" : 3.40,
+				"time" : 22
+			},
+			"taxi" : {
+				"cost" : 12.20,
+				"time" : 16
+			}
+		},
+		"gardens" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 135
+			},
+			"public" : {
+				"cost" : 3.70,
+				"time" : 37
+			},
+			"taxi" : {
+				"cost" : 15.00,
+				"time" : 12
+			}
+		},
+		"infinity" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 133
+			},
+			"public" : {
+				"cost" : 2.20,
+				"time" : 27
+			},
+			"taxi" : {
+				"cost" : 10.70,
+				"time" : 13
+			}
+		},
+		"merlion" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 123
+			},
+			"public" : {
+				"cost" : 2.90,
+				"time" : 28
+			},
+			"taxi" : {
+				"cost" : 14.40,
+				"time" : 14
+			}
+		},
+		"mustafa" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 145
+			},
+			"public" : {
+				"cost" : 2.00,
+				"time" : 39
+			},
+			"taxi" : {
+				"cost" : 17.70,
+				"time" : 23
+			}
+		},
+		"safari" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 264
+			},
+			"public" : {
+				"cost" : 4.50,
+				"time" : 75
+			},
+			"taxi" : {
+				"cost" : 22.00,
+				"time" : 23
+			}
+		},
+		"umbrella" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 137
+			},
+			"public" : {
+				"cost" : 2.00,
+				"time" : 35
+			},
+			"taxi" : {
+				"cost" : 20.70,
+				"time" : 20
+			}
+		},
+		"uss" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 81
+			},
+			"public" : {
+				"cost" : 1.20,
+				"time" : 24
+			},
+			"taxi" : {
+				"cost" : 17.70,
+				"time" : 17
+			}
+		}
+	},
+	"infinity" : {
+		"buddha" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 12
+			},
+			"public" : {
+				"cost" : 1.70,
+				"time" : 19
+			},
+			"taxi" : {
+				"cost" : 7.00,
+				"time" : 5
+			}
+		},
+		"gardens" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 11
+			},
+			"public" : {
+				"cost" : 0.00,
+				"time" : 10
+			},
+			"taxi" : {
+				"cost" : 9.00,
+				"time" : 9
+			}
+		},
+		"hawpar" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 133
+			},
+			"public" : {
+				"cost" : 2.20,
+				"time" : 27
+			},
+			"taxi" : {
+				"cost" : 15.50,
+				"time" : 15
+			}
+		},
+		"merlion" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 19
+			},
+			"public" : {
+				"cost" : 0.81,
+				"time" : 7
+			},
+			"taxi" : {
+				"cost" : 5.30,
+				"time" : 8
+			}
+		},
+		"mustafa" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 44
+			},
+			"public" : {
+				"cost" : 1.34,
+				"time" : 19
+			},
+			"taxi" : {
+				"cost" : 18.20,
+				"time" : 17
+			}
+		},
+		"safari" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 285
+			},
+			"public" : {
+				"cost" : 3.10,
+				"time" : 52
+			},
+			"taxi" : {
+				"cost" : 26.10,
+				"time" : 28
+			}
+		},
+		"umbrella" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 39
+			},
+			"public" : {
+				"cost" : 0.91,
+				"time" : 14
+			},
+			"taxi" : {
+				"cost" : 12.40,
+				"time" : 17
+			}
+		},
+		"uss" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 83
+			},
+			"public" : {
+				"cost" : 1.70,
+				"time" : 26
+			},
+			"taxi" : {
+				"cost" : 19.40,
+				"time" : 20
+			}
+		}
+	},
+	"merlion" : {
+		"buddha" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 12
+			},
+			"public" : {
+				"cost" : 1.10,
+				"time" : 14
+			},
+			"taxi" : {
+				"cost" : 5.40,
+				"time" : 4
+			}
+		},
+		"gardens" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 16
+			},
+			"public" : {
+				"cost" : 1.10,
+				"time" : 14
+			},
+			"taxi" : {
+				"cost" : 4.90,
+				"time" : 6
+			}
+		},
+		"hawpar" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 123
+			},
+			"public" : {
+				"cost" : 2.90,
+				"time" : 28
+			},
+			"taxi" : {
+				"cost" : 12.30,
+				"time" : 12
+			}
+		},
+		"infinity" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 19
+			},
+			"public" : {
+				"cost" : 0.81,
+				"time" : 7
+			},
+			"taxi" : {
+				"cost" : 6.20,
+				"time" : 7
+			}
+		},
+		"mustafa" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 41
+			},
+			"public" : {
+				"cost" : 1.50,
+				"time" : 18
+			},
+			"taxi" : {
+				"cost" : 17.10,
+				"time" : 18
+			}
+		},
+		"safari" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 280
+			},
+			"public" : {
+				"cost" : 2.90,
+				"time" : 41
+			},
+			"taxi" : {
+				"cost" : 27.60,
+				"time" : 29
+			}
+		},
+		"umbrella" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 34
+			},
+			"public" : {
+				"cost" : 0.91,
+				"time" : 14
+			},
+			"taxi" : {
+				"cost" : 12.40,
+				"time" : 17
+			}
+		},
+		"uss" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 75
+			},
+			"public" : {
+				"cost" : 1.30,
+				"time" : 23
+			},
+			"taxi" : {
+				"cost" : 13.20,
+				"time" : 15
+			}
+		}
+	},
+	"mustafa" : {
+		"buddha" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 50
+			},
+			"public" : {
+				"cost" : 1.40,
+				"time" : 24
+			},
+			"taxi" : {
+				"cost" : 12.20,
+				"time" : 16
+			}
+		},
+		"gardens" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 41
+			},
+			"public" : {
+				"cost" : 1.50,
+				"time" : 24
+			},
+			"taxi" : {
+				"cost" : 20.00,
+				"time" : 22
+			}
+		},
+		"hawpar" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 145
+			},
+			"public" : {
+				"cost" : 2.00,
+				"time" : 39
+			},
+			"taxi" : {
+				"cost" : 19.00,
+				"time" : 20
+			}
+		},
+		"infinity" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 44
+			},
+			"public" : {
+				"cost" : 1.34,
+				"time" : 19
+			},
+			"taxi" : {
+				"cost" : 17.10,
+				"time" : 18
+			}
+		},
+		"merlion" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 41
+			},
+			"public" : {
+				"cost" : 1.50,
+				"time" : 18
+			},
+			"taxi" : {
+				"cost" : 16.00,
+				"time" : 17
+			}
+		},
+		"safari" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 250
+			},
+			"public" : {
+				"cost" : 3.70,
+				"time" : 69
+			},
+			"taxi" : {
+				"cost" : 25.00,
+				"time" : 26
+			}
+		},
+		"umbrella" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 9
+			},
+			"public" : {
+				"cost" : 0.00,
+				"time" : 7
+			},
+			"taxi" : {
+				"cost" : 5.90,
+				"time" : 7
+			}
+		},
+		"uss" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 108
+			},
+			"public" : {
+				"cost" : 2.70,
+				"time" : 35
+			},
+			"taxi" : {
+				"cost" : 25.10,
+				"time" : 25
+			}
+		}
+	},
+	"safari" : {
+		"buddha" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 288
+			},
+			"public" : {
+				"cost" : 4.70,
+				"time" : 86
+			},
+			"taxi" : {
+				"cost" : 22.70,
+				"time" : 30
+			}
+		},
+		"gardens" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 344
+			},
+			"public" : {
+				"cost" : 5.10,
+				"time" : 79
+			},
+			"taxi" : {
+				"cost" : 28.70,
+				"time" : 30
+			}
+		},
+		"hawpar" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 264
+			},
+			"public" : {
+				"cost" : 4.50,
+				"time" : 75
+			},
+			"taxi" : {
+				"cost" : 23.00,
+				"time" : 25
+			}
+		},
+		"infinity" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 285
+			},
+			"public" : {
+				"cost" : 3.10,
+				"time" : 52
+			},
+			"taxi" : {
+				"cost" : 24.80,
+				"time" : 27
+			}
+		},
+		"merlion" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 280
+			},
+			"public" : {
+				"cost" : 2.90,
+				"time" : 41
+			},
+			"taxi" : {
+				"cost" : 30.40,
+				"time" : 32
+			}
+		},
+		"mustafa" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 250
+			},
+			"public" : {
+				"cost" : 3.70,
+				"time" : 69
+			},
+			"taxi" : {
+				"cost" : 17.70,
+				"time" : 23
+			}
+		},
+		"umbrella" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 245
+			},
+			"public" : {
+				"cost" : 1.69,
+				"time" : 60
+			},
+			"taxi" : {
+				"cost" : 21.80,
+				"time" : 22
+			}
+		},
+		"uss" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 325
+			},
+			"public" : {
+				"cost" : 3.00,
+				"time" : 69
+			},
+			"taxi" : {
+				"cost" : 33.30,
+				"time" : 35
+			}
+		}
+	},
+	"umbrella" : {
+		"buddha" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 42
+			},
+			"public" : {
+				"cost" : 2.00,
+				"time" : 22
+			},
+			"taxi" : {
+				"cost" : 14.20,
+				"time" : 14
+			}
+		},
+		"gardens" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 37
+			},
+			"public" : {
+				"cost" : 2.10,
+				"time" : 20
+			},
+			"taxi" : {
+				"cost" : 18.00,
+				"time" : 17
+			}
+		},
+		"hawpar" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 137
+			},
+			"public" : {
+				"cost" : 2.00,
+				"time" : 35
+			},
+			"taxi" : {
+				"cost" : 18.70,
+				"time" : 20
+			}
+		},
+		"infinity" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 39
+			},
+			"public" : {
+				"cost" : 0.91,
+				"time" : 14
+			},
+			"taxi" : {
+				"cost" : 13.90,
+				"time" : 16
+			}
+		},
+		"merlion" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 34
+			},
+			"public" : {
+				"cost" : 0.91,
+				"time" : 14
+			},
+			"taxi" : {
+				"cost" : 17.00,
+				"time" : 16
+			}
+		},
+		"mustafa" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 9
+			},
+			"public" : {
+				"cost" : 0.00,
+				"time" : 7
+			},
+			"taxi" : {
+				"cost" : 9.00,
+				"time" : 8
+			}
+		},
+		"safari" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 245
+			},
+			"public" : {
+				"cost" : 1.69,
+				"time" : 62
+			},
+			"taxi" : {
+				"cost" : 20.00,
+				"time" : 21
+			}
+		},
+		"uss" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 100
+			},
+			"public" : {
+				"cost" : 1.10,
+				"time" : 35
+			},
+			"taxi" : {
+				"cost" : 25.10,
+				"time" : 25
+			}
+		}
+	},
+	"uss" : {
+		"buddha" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 59
+			},
+			"public" : {
+				"cost" : 2.10,
+				"time" : 22
+			},
+			"taxi" : {
+				"cost" : 11.70,
+				"time" : 13
+			}
+		},
+		"gardens" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 86
+			},
+			"public" : {
+				"cost" : 2.20,
+				"time" : 38
+			},
+			"taxi" : {
+				"cost" : 14.20,
+				"time" : 15
+			}
+		},
+		"hawpar" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 81
+			},
+			"public" : {
+				"cost" : 1.20,
+				"time" : 24
+			},
+			"taxi" : {
+				"cost" : 14.40,
+				"time" : 16
+			}
+		},
+		"infinity" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 83
+			},
+			"public" : {
+				"cost" : 1.70,
+				"time" : 26
+			},
+			"taxi" : {
+				"cost" : 18.60,
+				"time" : 21
+			}
+		},
+		"merlion" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 75
+			},
+			"public" : {
+				"cost" : 1.30,
+				"time" : 23
+			},
+			"taxi" : {
+				"cost" : 13.20,
+				"time" : 15
+			}
+		},
+		"mustafa" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 108
+			},
+			"public" : {
+				"cost" : 2.70,
+				"time" : 35
+			},
+			"taxi" : {
+				"cost" : 21.80,
+				"time" : 22
+			}
+		},
+		"safari" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 325
+			},
+			"public" : {
+				"cost" : 3.00,
+				"time" : 69
+			},
+			"taxi" : {
+				"cost" : 33.40,
+				"time" : 35
+			}
+		},
+		"umbrella" : {
+			"foot" : {
+				"cost" : 0.00,
+				"time" : 100
+			},
+			"public" : {
+				"cost" : 1.10,
+				"time" : 35
+			},
+			"taxi" : {
+				"cost" : 18.40,
+				"time" : 20
+			}
+		}
+	}
+}
