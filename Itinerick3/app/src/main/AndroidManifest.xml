@@ -29,6 +29,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
+
         <activity
             android:name=".FragmentMap"
             android:label="@string/title_activity_itinerick3"

@@ -42,6 +42,7 @@ public class ActivityLocation extends AppCompatActivity implements DeleteDialogF
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<String> myDataset;
+    private ArrayList<String> mySearchs;
     private LocationDbHelper locationDbHelper;
     private SQLiteDatabase locationDb;
     DialogFragment dialog;
@@ -67,7 +68,8 @@ public class ActivityLocation extends AppCompatActivity implements DeleteDialogF
         LoadDbAsync loadDbAsync = new LoadDbAsync(this);
         loadDbAsync.execute();
         myDataset = new ArrayList<>();
-        myDataset.add("Rick");
+        mySearchs = new ArrayList<>();
+        //myDataset.add("Rick");
         spinner1 = findViewById(R.id.spinner1);
         btnAdd = findViewById(R.id.btnAdd);
         btnCompute = findViewById(R.id.btnCompute);
@@ -83,6 +85,7 @@ public class ActivityLocation extends AppCompatActivity implements DeleteDialogF
                 }
                 if (!myDataset.contains(location)) {
                     myDataset.add(location);
+                    mySearchs.add(queryForMQ(location));
                     Log.d("Location ", location);
                 }
                 mAdapter.notifyDataSetChanged();
@@ -131,7 +134,7 @@ public class ActivityLocation extends AppCompatActivity implements DeleteDialogF
     //Compute Itinerary - goes to the Map Fragment where the shortest path is shown
     public void onClickCompute(View v){
         Intent intent = new Intent(this, FragmentMap.class);
-        intent.putExtra(LIST_OF_PLACES, myDataset);
+        intent.putExtra(LIST_OF_PLACES, mySearchs);
         startActivity(intent);
     }
 
@@ -149,9 +152,10 @@ public class ActivityLocation extends AppCompatActivity implements DeleteDialogF
     @Override
     public void onDialogPositiveClick(DialogFragment dialog) {
         Toast.makeText(this, "Poof! There it's gone...", Toast.LENGTH_LONG).show();
-        TextView view = (TextView) findViewById(deleteViewId);
+        TextView view = findViewById(deleteViewId);
         String string = view.getText().toString();
         myDataset.remove(string);
+        mySearchs.remove(queryForMQ(string));
         mAdapter.notifyDataSetChanged();
     }
 
@@ -195,15 +199,32 @@ public class ActivityLocation extends AppCompatActivity implements DeleteDialogF
         return keyword;
     }
 
+    public String queryForMQ(String location) {
+        String query = "SELECT * from "
+                + LocationContract.LocationEntry.TABLE_NAME
+                + " where "
+                + LocationContract.LocationEntry.COL_LOCATION
+                + " = '"
+                + location
+                + "'";
+        Cursor cursor = locationDb.rawQuery(query, null);
+        cursor.moveToNext();
+        String keyword = cursor.getString(cursor.getColumnIndex(LocationContract.LocationEntry.COL_MAP_QUERY));
+        cursor.close();
+        return keyword;
+    }
+
     public class LocationJsonData {
         String name;
         String keyword;
         String description;
+        String mapquery;
 
-        LocationJsonData(String name, String keyword, String description) {
+        LocationJsonData(String name, String keyword, String description, String mapquery) {
             this.name = name;
             this.keyword = keyword;
             this.description = description;
+            this.mapquery = mapquery;
         }
     }
 
@@ -230,6 +251,14 @@ public class ActivityLocation extends AppCompatActivity implements DeleteDialogF
         locationJsonData = gson.fromJson(locations, LocationJsonData[].class);
     }
 
+    class ComputeAsync extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            return null;
+        }
+    }
+
     class LoadDbAsync extends AsyncTask<Void, Void, Void> {
 
         final String COUNTRY = " Singapore";
@@ -243,12 +272,12 @@ public class ActivityLocation extends AppCompatActivity implements DeleteDialogF
             activityLocation = (ActivityLocation) context;
         }
 
-        private void addToDB(String name, String keyword, String description) {
+        private void addToDB(String name, String keyword, String description, String mapquery) {
             ContentValues cv = new ContentValues();
             cv.put(LocationContract.LocationEntry.COL_LOCATION, name);
             cv.put(LocationContract.LocationEntry.COL_KEYWORDS, keyword);
             cv.put(LocationContract.LocationEntry.COL_DESCRIPTION, description);
-            cv.put(LocationContract.LocationEntry.COL_MAP_QUERY, name + COUNTRY);
+            cv.put(LocationContract.LocationEntry.COL_MAP_QUERY, mapquery + COUNTRY);
             locationDb.insert(LocationContract.LocationEntry.TABLE_NAME, null, cv);
         }
 
@@ -258,7 +287,7 @@ public class ActivityLocation extends AppCompatActivity implements DeleteDialogF
             count = 0;
             locations = new String[locationJsonData.length];
             for (LocationJsonData data: locationJsonData) {
-                addToDB(data.name, data.keyword, data.description);
+                addToDB(data.name, data.keyword, data.description, data.mapquery);
                 locations[count] = data.name;
                 count++;
             }
@@ -270,6 +299,8 @@ public class ActivityLocation extends AppCompatActivity implements DeleteDialogF
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            myDataset.add("Marina Bay Sands");
+            mySearchs.add(queryForMQ("Marina Bay Sands"));
             return null;
         }
     }
