@@ -1,89 +1,101 @@
 package myalgorithm;
 
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.PriorityQueue;
-
 /**
  * Created by John on 4/12/2017.
  */
 
-public class Dijkstra {
-    public static List<String> modeList = new ArrayList<>();
-    public static List<Vertex> traversalList = new ArrayList<>();
-    public static List<Double> costList = new ArrayList<>();
-    public static List<Double> timeList = new ArrayList<>();
-    public static List<String> pathList = new ArrayList<>();
+import java.lang.reflect.Array;
+import java.util.*;
+class Permutations<E> implements  Iterator<E[]>{
 
+    private E[] arr;
+    private int[] ind;
+    private boolean has_next;
 
+    public E[] output;//next() returns this array, make it public
 
-
-    public static void computePaths(Vertex source)
-    {
-        source.minTime = 0.;
-        source.minCost = 0.;
-        source.mode = "";
-        source.budget = 30;
-        PriorityQueue<Vertex> vertexQueue = new PriorityQueue<Vertex>();
-        vertexQueue.add(source);
-
-        while (!vertexQueue.isEmpty()) {
-            Vertex u = vertexQueue.poll();
-
-            // Visit each edge exiting u
-            for (Edge e : u.adjacencies)
-            {
-                Vertex v = e.target;
-                double cost = e.cost;
-                double time = e.time;
-                String mode = e.mode;
-                double timeThroughU = u.minTime + time;
-                double costThroughU = u.minCost + cost;
-                String modeThroughU = u.mode + " "+ mode;
-                if (timeThroughU < v.minTime) {
-                    if(timeThroughU>=45 && mode.equals("Foot")){
-                        continue;
-                    }
-
-                    if(timeThroughU>=60 &&v.budget-costThroughU>=0){
-                        vertexQueue.remove(v);
-                        v.budget = 30-costThroughU;
-                        v.minCost = costThroughU;
-                        v.minTime = timeThroughU;
-                        v.mode = modeThroughU ;
-                        v.previous = u;
-                        vertexQueue.add(v);
-                    }
-
-                    else if (costThroughU<v.minCost && v.budget>=0){
-                        vertexQueue.remove(v);
-                        v.budget = 30-costThroughU;
-                        v.minCost = costThroughU;
-                        v.minTime = timeThroughU;
-                        v.mode = modeThroughU;
-                        v.previous = u;
-                        vertexQueue.add(v);
-                    }
-                }
+    Permutations(E[] arr){
+        this.arr = arr.clone();
+        ind = new int[arr.length];
+        //convert an array of any elements into array of integers - first occurrence is used to enumerate
+        Map<E, Integer> hm = new HashMap<E, Integer>();
+        for(int i = 0; i < arr.length; i++){
+            Integer n = hm.get(arr[i]);
+            if (n == null){
+                hm.put(arr[i], i);
+                n = i;
             }
+            ind[i] = n.intValue();
         }
+        Arrays.sort(ind);//start with ascending sequence of integers
+
+
+        //output = new E[arr.length]; <-- cannot do in Java with generics, so use reflection
+        output = (E[]) Array.newInstance(arr.getClass().getComponentType(), arr.length);
+        has_next = true;
     }
 
-
-    public static List<Vertex> getShortestPathTo(Vertex target)
-    {
-        List<Vertex> path = new ArrayList<Vertex>();
-        for (Vertex vertex = target; vertex != null; vertex = vertex.previous)
-            path.add(vertex);
-
-        Collections.reverse(path);
-        return path;
+    public boolean hasNext() {
+        return has_next;
     }
 
+    /**
+     * Computes next permutations. Same array instance is returned every time!
+     * @return
+     */
+    public E[] next() {
+        if (!has_next)
+            throw new NoSuchElementException();
 
-    public static void resetVertex(){
+        for(int i = 0; i < ind.length; i++){
+            output[i] = arr[ind[i]];
+        }
+
+
+        //get next permutation
+        has_next = false;
+        for(int tail = ind.length - 1;tail > 0;tail--){
+            if (ind[tail - 1] < ind[tail]){//still increasing
+
+                //find last element which does not exceed ind[tail-1]
+                int s = ind.length - 1;
+                while(ind[tail-1] >= ind[s])
+                    s--;
+
+                swap(ind, tail-1, s);
+
+                //reverse order of elements in the tail
+                for(int i = tail, j = ind.length - 1; i < j; i++, j--){
+                    swap(ind, i, j);
+                }
+                has_next = true;
+                break;
+            }
+
+        }
+        return output;
+    }
+
+    private void swap(int[] arr, int i, int j){
+        int t = arr[i];
+        arr[i] = arr[j];
+        arr[j] = t;
+    }
+
+    public List<Vertex[]> createPermutedVertexListList(Vertex[] vertices){
+
+        Permutations<Vertex> perm = new Permutations<Vertex>(vertices);
+        List<Vertex[]> permutedVertexListList = new ArrayList<>();
+        while(perm.hasNext()){
+            permutedVertexListList.add(perm.next());
+        }
+        return permutedVertexListList;
+    }
+
+    public void remove() {
+    }
+
+    public static void main(String[] args) {
         Vertex v0 = new Vertex("Buddha Tooth Temple");
         Vertex v1 = new Vertex("Gardens By the Bay");
         Vertex v2 = new Vertex("Haw Par Villa");
@@ -155,79 +167,15 @@ public class Dijkstra {
                 new Edge(v2, 16, 14.40, "Taxi"), new Edge(v3, 21, 18.60, "Taxi"), new Edge(v4, 15, 13.20, "Taxi"), new Edge(v5, 22, 21.800, "Taxi"), new Edge(v6, 35, 33.40, "Taxi"),
                 new Edge(v7, 20, 18.40, "Taxi"), new Edge(v0, 59, 0, "Foot"), new Edge(v1, 86, 0, "Foot"), new Edge(v2, 81, 0, "Foot"), new Edge(v3, 83, 0, "Foot"),
                 new Edge(v4, 75, 0, "Foot"), new Edge(v5, 108, 0, "Foot"), new Edge(v6, 325, 0, "Foot"), new Edge(v7, 100, 0, "Foot")};
-    }
 
-    public static void main(String[] args)
-    {
-        Vertex v0 = new Vertex("Buddha Tooth Temple");
-        Vertex v1 = new Vertex("Gardens By the Bay");
-        Vertex v2 = new Vertex("Haw Par Villa");
-        Vertex v3 = new Vertex("Marina Bay Sands");
-        v0.adjacencies = new Edge[]{new Edge(v1, 25, 1.40, "Public Transport"), new Edge(v2, 22, 3.40, "Public Transport"), new Edge(v3, 19, 1.70, "Public Transport"), new Edge(v1, 11, 11, "Taxi"), new Edge(v2, 14, 11.50, "Taxi"),
-                new Edge(v3, 10, 10.50, "Taxi"), new Edge(v1, 32, 0, "Foot"), new Edge(v2, 107, 0, "Foot"), new Edge(v3, 12, 0, "Foot")};
+        Vertex[] vertices = {v0, v1, v2, v4, v5, v6, v7, v8};
 
-        v1.adjacencies = new Edge[]{new Edge(v0, 25, 1.40, "Public Transport"), new Edge(v2, 37, 3.70, "Public Transport"), new Edge(v3, 10, 0, "Public Transport"), new Edge(v0, 13, 11.60, "Taxi"), new Edge(v2, 15, 16.50, "Taxi"),
-                new Edge(v3, 8, 5.60, "Taxi"), new Edge(v0, 32, 0, "Foot"), new Edge(v2, 135, 0, "Foot"), new Edge(v3, 11, 0, "Foot")};
-
-        v2.adjacencies = new Edge[]{new Edge(v0, 22, 3.40, "Public Transport"), new Edge(v1, 37, 3.70, "Public Transport"), new Edge(v3, 27, 2.20, "Public Transport"), new Edge(v0, 16, 12.20, "Taxi"), new Edge(v1, 12, 15.00, "Taxi"),
-                new Edge(v3, 13, 10.70, "Taxi"), new Edge(v0, 107, 0, "Foot"), new Edge(v1, 135, 0, "Foot"), new Edge(v3, 133, 0, "Foot")};
-
-        v3.adjacencies = new Edge[]{new Edge(v0, 19, 1.70, "Public Transport"), new Edge(v1, 10, 0.00, "Public Transport"), new Edge(v2, 27, 2.20, "Public Transport"), new Edge(v0, 5, 7, "Taxi"), new Edge(v1, 9, 9, "Taxi"),
-                new Edge(v2, 17, 15.50, "Taxi"), new Edge(v0, 12, 0, "Foot"), new Edge(v1, 11, 0, "Foot"), new Edge(v2, 133, 0, "Foot"), };
-
-
-        Vertex[] vertices = {v0, v1, v2};
-
-
-            computePaths(v3);
-            for (Vertex v : vertices) {
-                System.out.println("Time to " + v + ": " + v.minTime);
-                DecimalFormat df = new DecimalFormat("#,###,##0.00");
-                System.out.println("Cost to " + v + ": " + v.minCost + " Budget left: " + df.format(v.budget));
-                System.out.println("Mode of Transport " + v + ":" + v.mode);
-                List<Vertex> path = getShortestPathTo(v);
-                System.out.println("Path: " + path);
-
-                modeList.add(v.mode);
-                costList.add(v.minCost);
-                timeList.add(v.minTime);
-                pathList.add(path.toString());
-            }
-
-            Permutations<Vertex> perm = new Permutations<Vertex>(vertices);
-            List<Vertex[]> perumutedVertexListList = perm.createPermutedVertexListList(vertices);
-
-            for(Vertex[] currentVertexList : perumutedVertexListList){
-                for(int i = 0; i<3; i++) {
-                    v0 = new Vertex("Buddha Tooth Temple");
-                    v1 = new Vertex("Gardens By the Bay");
-                    v2 = new Vertex("Haw Par Villa");
-                    v3 = new Vertex("Marina Bay Sands");
-                    v0.adjacencies = new Edge[]{new Edge(v1, 25, 1.40, "Public Transport"), new Edge(v2, 22, 3.40, "Public Transport"), new Edge(v3, 19, 1.70, "Public Transport"), new Edge(v1, 11, 11, "Taxi"), new Edge(v2, 14, 11.50, "Taxi"),
-                            new Edge(v3, 10, 10.50, "Taxi"), new Edge(v1, 32, 0, "Foot"), new Edge(v2, 107, 0, "Foot"), new Edge(v3, 12, 0, "Foot")};
-
-                    v1.adjacencies = new Edge[]{new Edge(v0, 25, 1.40, "Public Transport"), new Edge(v2, 37, 3.70, "Public Transport"), new Edge(v3, 10, 0, "Public Transport"), new Edge(v0, 13, 11.60, "Taxi"), new Edge(v2, 15, 16.50, "Taxi"),
-                            new Edge(v3, 8, 5.60, "Taxi"), new Edge(v0, 32, 0, "Foot"), new Edge(v2, 135, 0, "Foot"), new Edge(v3, 11, 0, "Foot")};
-
-                    v2.adjacencies = new Edge[]{new Edge(v0, 22, 3.40, "Public Transport"), new Edge(v1, 37, 3.70, "Public Transport"), new Edge(v3, 27, 2.20, "Public Transport"), new Edge(v0, 16, 12.20, "Taxi"), new Edge(v1, 12, 15.00, "Taxi"),
-                            new Edge(v3, 13, 10.70, "Taxi"), new Edge(v0, 107, 0, "Foot"), new Edge(v1, 135, 0, "Foot"), new Edge(v3, 133, 0, "Foot")};
-
-                    v3.adjacencies = new Edge[]{new Edge(v0, 19, 1.70, "Public Transport"), new Edge(v1, 10, 0.00, "Public Transport"), new Edge(v2, 27, 2.20, "Public Transport"), new Edge(v0, 5, 7, "Taxi"), new Edge(v1, 9, 9, "Taxi"),
-                            new Edge(v2, 17, 15.50, "Taxi"), new Edge(v0, 12, 0, "Foot"), new Edge(v1, 11, 0, "Foot"), new Edge(v2, 133, 0, "Foot"), };
-                    computePaths(currentVertexList[1]);
-                    for (Vertex vv : currentVertexList) {
-                        List<Vertex> path = getShortestPathTo(vv);
-
-                        modeList.add(vv.mode);
-                        costList.add(vv.minCost);
-                        timeList.add(vv.minTime);
-                        pathList.add(path.toString());
-                    }
-                }
-            }
-        System.out.print(costList);
-        System.out.println(costList);
-        System.out.println(timeList);
-        System.out.println(pathList);
+        Permutations<Vertex> perm = new Permutations<Vertex>(vertices);
+        int count = 0;
+        while(perm.hasNext()){
+            System.out.println(Arrays.toString(perm.next()));
+            count++;
+        }
+        System.out.println("total: " + count);
     }
 }
